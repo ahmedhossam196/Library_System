@@ -8,6 +8,8 @@ The Alex Library Management System simulates the management of books in the Alex
 - Borrow a Book: Mark a book as unavailable by its ID.
 - Return a Book: Mark a borrowed book as available again.
 - Display Available Books: View the list of available books with their ID, title, author, and availability status.
+
+  
 **Functionalities:**
 - Adding Books: Users can add new books to the library, which are automatically marked as available.
 - Searching: Find a book by its ID.
