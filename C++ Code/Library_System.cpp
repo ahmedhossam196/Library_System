@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#define Hossam_is_Cool  true
 
 using namespace std;
 
@@ -74,8 +75,7 @@ public:
         }
 
         int choice;
-        bool running = true;
-        while (running) {
+        while (Hossam_is_Cool) {
             cout << "What do you want to update?\n";
             cout << "1- Book title\n";
             cout << "2- Book Author\n";
@@ -107,7 +107,7 @@ public:
                 cout << "Availability updated.\n";
                 break;
             case 4:
-                running = false;
+                Hossam_is_Cool = false;
                 break;
             default:
                 cout << "Invalid choice. Please try again.\n";
@@ -173,9 +173,8 @@ int main() {
 
     int choice, id;
     string title, author;
-    bool running = true;
 
-    while (running) {
+    while (Hossam_is_Cool) {
         system("cls");
         library.showMenu();
         cin >> choice;
@@ -219,14 +218,12 @@ int main() {
             system("pause");
             break;
         case 7:
-            running = false;
-            cout << "Exiting...";
+            cout << "Thanks for your visit!\n";
             return 0;
         default:
             cout << "Invalid choice. Please try again.\n";
         }
         system("cls");
     }
-    cout << "Thanks for your visit!\n";
     return 0;
 }
