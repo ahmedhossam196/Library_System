@@ -1,16 +1,17 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include <algorithm>
 
 using namespace std;
 
+const int MAX_BOOKS = 100;
+
 class Library {
 private:
-    vector<string> authors;
-    vector<string> titles;
-    vector<int> ids;
-    vector<bool> status;
+    string authors[MAX_BOOKS];
+    string titles[MAX_BOOKS];
+    int ids[MAX_BOOKS];
+    bool status[MAX_BOOKS];
     int currentBookCount;
 
 public:
@@ -28,21 +29,24 @@ public:
         cout << "6- Return a book" << endl;
         cout << "7- Exit" << endl;
         cout << "___________________________________________________________\n\n";
-
         cout << "Enter Your Choice: ";
     }
 
     void addBook(const string& author, const string& title) {
-        ids.push_back(currentBookCount + 1);
-        authors.push_back(author);
-        titles.push_back(title);
-        status.push_back(true);
+        if (currentBookCount >= MAX_BOOKS) {
+            cout << "Library is full. Cannot add more books.\n";
+            return;
+        }
+        ids[currentBookCount] = currentBookCount + 1;
+        authors[currentBookCount] = author;
+        titles[currentBookCount] = title;
+        status[currentBookCount] = true;
         currentBookCount++;
         cout << "Book added successfully.\n";
     }
 
     int findBook(int id) {
-        for (size_t i = 0; i < ids.size(); i++) {
+        for (int i = 0; i < currentBookCount; i++) {
             if (ids[i] == id) {
                 return i;
             }
@@ -155,7 +159,7 @@ public:
     }
 
     void displayAllBooks() {
-        for (size_t i = 0; i < ids.size(); i++) {
+        for (int i = 0; i < currentBookCount; i++) {
             displayBookInfo(ids[i]);
             cout << "****************************************\n";
         }
@@ -190,35 +194,30 @@ int main() {
             library.displayAllBooks();
             system("pause");
             break;
-    
         case 3:
             cout << "Book ID: ";
             cin >> id;
             library.updateBook(id);
             system("pause");
             break;
-
         case 4:
             cout << "Enter Book ID: ";
             cin >> id;
             library.borrowBook(id);
             system("pause");
             break;
-
         case 5:
             cout << "Enter the ID of the book to return: ";
             cin >> id;
             library.returnBook(id);
             system("pause");
             break;
-      
         case 6:
             cout << "Book ID: ";
             cin >> id;
             library.deleteBook(id);
             system("pause");
             break;
-
         case 7:
             running = false;
             cout << "Exiting...";
